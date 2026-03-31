@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus | Neural Anomaly Detection</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="cyber-theme">
+    <div class="grid-overlay"></div>
+    
+    <main class="dashboard-wrapper">
+        <header class="sys-header">
+            <h1 class="sys-title">NEXUS<span class="pulse-dot"></span></h1>
+            <p class="sys-subtitle">Transaction Anomaly Engine v2.4.1</p>
+        </header>
+
+        <section class="analysis-module">
+            <div class="module-controls">
+                <h2 class="section-heading">Input Vector Stream</h2>
+                <button type="button" id="inject-mock-data" class="action-btn secondary">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    Inject Test Vector
+                </button>
+            </div>
+            
+            <form id="tx-analysis-engine">
+                <!-- Primary Indicators -->
+                <fieldset class="param-matrix primary-params">
+                    <legend>Primary Node Parameters</legend>
+                    <div class="data-node">
+                        <label for="prm_scaled_amt">Scaled Transfer Volume</label>
+                        <input type="number" step="any" id="prm_scaled_amt" name="Scaled_Amount" required placeholder="0.0000" class="numeric-input">
+                    </div>
+                    <div class="data-node">
+                        <label for="prm_scaled_time">Epoch Timestamp (Scaled)</label>
+                        <input type="number" step="any" id="prm_scaled_time" name="Scaled_Time" required placeholder="0.0000" class="numeric-input">
+                    </div>
+                </fieldset>
+
+                <!-- Dimensionality Reduction (PCA) Variables -->
+                <fieldset class="param-matrix secondary-params">
+                    <legend>Extracted Component Matrix (V1 - V28)</legend>
+                    <div class="matrix-grid" id="pca-matrix-container">
+                        <!-- JS injects nodes here -->
+                    </div>
+                </fieldset>
+
+                <div class="execution-bay">
+                    <button type="submit" class="action-btn primary execute-eval-trigger" id="run-eval-btn">
+                        <span class="btn-label">INITIATE ANALYSIS</span>
+                        <div class="spinner-ring d-none"></div>
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Overlay for Results -->
+        <aside id="evaluation-layer" class="overlay-layer d-none">
+            <div class="terminal-panel">
+                <div class="terminal-header">
+                    <span class="term-title">System Evaluation Report</span>
+                    <button class="term-close" id="close-report-btn">&times;</button>
+                </div>
+                <div class="terminal-body" id="term-body-content">
+                    <div class="status-indicator" id="report-icon"></div>
+                    <h3 id="report-headline">AWAITING DATA...</h3>
+                    <p id="report-details" class="term-log">></p>
+                </div>
+            </div>
+        </aside>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
